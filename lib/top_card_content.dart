@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+final textStyle = TextStyle(
+  fontSize: 18.0,
+  color: Color(0xFF8d8e98),
+);
+
+final iconSize = 80.0;
+final gap = 15.0;
+
 class TopCardContent extends StatelessWidget {
   final IconData icon;
   final String text;
@@ -14,17 +22,14 @@ class TopCardContent extends StatelessWidget {
       children: [
         FaIcon(
           icon,
-          size: 80.0,
+          size: iconSize,
         ),
         SizedBox(
-          height: 15,
+          height: gap,
         ),
         Text(
           text,
-          style: TextStyle(
-            fontSize: 18.0,
-            color: Color(0xFF8d8e98),
-          ),
+          style: textStyle,
         )
       ],
     );
