@@ -25,49 +25,13 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.mars,
-                          size: 80.0,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          'MALE',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Color(0xFF8d8e98),
-                          ),
-                        )
-                      ],
-                    ),
+                    cardChild: TopCardContent(FontAwesomeIcons.mars, 'MALE'),
                     colour: Color(activeCardColour),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FaIcon(
-                          FontAwesomeIcons.venus,
-                          size: 80.0,
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          'FEMALE',
-                          style: TextStyle(
-                            fontSize: 18.0,
-                            color: Color(0xFF8d8e98),
-                          ),
-                        )
-                      ],
-                    ),
+                    cardChild: TopCardContent(FontAwesomeIcons.venus, 'FEMALE'),
                     colour: Color(activeCardColour),
                   ),
                 ),
@@ -104,6 +68,36 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class TopCardContent extends StatelessWidget {
+  final icon;
+  final String text;
+
+  TopCardContent(this.icon, this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        FaIcon(
+          icon,
+          size: 80.0,
+        ),
+        SizedBox(
+          height: 15,
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 18.0,
+            color: Color(0xFF8d8e98),
+          ),
+        )
+      ],
     );
   }
 }
