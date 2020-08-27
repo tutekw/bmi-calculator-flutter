@@ -34,6 +34,7 @@ class _InputPageState extends State<InputPage> {
     }
   }
 
+  double height = 180;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,6 +77,24 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('HEIGH'),
+                  Text('180cm'),
+                  Slider(
+                    min: 120,
+                    max: 220,
+                    divisions: 1,
+                    value: height,
+                    onChanged: (newValue) {
+                      setState(() {
+                        height = newValue;
+                      });
+                    },
+                  ),
+                ],
+              ),
               colour: activeCardColour,
             ),
           ),
