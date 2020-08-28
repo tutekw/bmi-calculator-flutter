@@ -17,22 +17,9 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Color maleCardColour = inactiveCardColour;
   Color femaleCardColour = inactiveCardColour;
+  Gender selectedGender;
 
 //1 = Male 2 = Female
-  void updateColour(Gender cardGender) {
-    if (cardGender == Gender.male) {
-      if (maleCardColour == inactiveCardColour) {
-        maleCardColour = activeCardColour;
-        femaleCardColour = inactiveCardColour;
-      }
-    }
-    if (cardGender == Gender.female) {
-      if (femaleCardColour == inactiveCardColour) {
-        femaleCardColour = activeCardColour;
-        maleCardColour = inactiveCardColour;
-      }
-    }
-  }
 
   double height = 180;
   @override
@@ -50,25 +37,31 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      updateColour(Gender.male);
-                      setState(() {});
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
                     },
                     child: ReusableCard(
                       cardChild: TopCardContent(FontAwesomeIcons.mars, 'MALE'),
-                      colour: maleCardColour,
+                      colour: selectedGender == Gender.male
+                          ? activeCardColour
+                          : inactiveCardColour,
                     ),
                   ),
                 ),
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      updateColour(Gender.female);
-                      setState(() {});
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
                     },
                     child: ReusableCard(
                       cardChild:
                           TopCardContent(FontAwesomeIcons.venus, 'FEMALE'),
-                      colour: femaleCardColour,
+                      colour: selectedGender == Gender.female
+                          ? activeCardColour
+                          : inactiveCardColour,
                     ),
                   ),
                 ),
@@ -81,11 +74,11 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text('HEIGH'),
-                  Text('180cm'),
+                  Text(height.floor().toString() + ' cm'),
                   Slider(
                     min: 120,
                     max: 220,
-                    divisions: 1,
+                    divisions: 100,
                     value: height,
                     onChanged: (newValue) {
                       setState(() {
